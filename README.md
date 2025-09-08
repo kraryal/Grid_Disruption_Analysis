@@ -1,4 +1,3 @@
-```markdown
 # ⚡ Grid Disruption Analysis
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -188,30 +187,6 @@ python app.py
 # * Debugger is active!
 ```
 
-### Method 2: Using Flask CLI
-```bash
-# Set Flask app
-export FLASK_APP=app.py  # Linux/Mac
-set FLASK_APP=app.py     # Windows
-
-# Run with Flask CLI
-flask run
-
-# Run on specific port
-flask run --port 8000
-
-# Run with host accessible from network
-flask run --host=0.0.0.0 --port=5000
-```
-
-### Method 3: Production-like Setup
-```bash
-# Install gunicorn for production-like server
-pip install gunicorn
-
-# Run with gunicorn (Linux/Mac only)
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
-```
 
 ## 🖥️ Application Usage
 
@@ -558,7 +533,7 @@ Need help? Here's how to get support:
 - 📖 Check the [Documentation](docs/)
 - 🐛 Report bugs via [GitHub Issues](https://github.com/kraryal/Grid_Disruption_Analysis/issues)
 - 💬 Join discussions in [GitHub Discussions](https://github.com/kraryal/Grid_Disruption_Analysis/discussions)
-- 📧 Contact: [your-email@domain.com]
+- 📧 Contact: [aryalkris9@gmail.com]
 
 ---
 
