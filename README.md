@@ -530,7 +530,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 Need help? Here's how to get support:
 
-- 📖 Check the [Documentation](docs/)
+- 📖 Check the [Documentation]([docs/](https://github.com/kraryal/Grid_Disruption_Analysis/tree/main/DOC))
 - 🐛 Report bugs via [GitHub Issues](https://github.com/kraryal/Grid_Disruption_Analysis/issues)
 - 💬 Join discussions in [GitHub Discussions](https://github.com/kraryal/Grid_Disruption_Analysis/discussions)
 - 📧 Contact: [aryalkris9@gmail.com]
