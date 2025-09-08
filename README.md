@@ -1,79 +1,57 @@
-================================================================================
-Grid Disruption Analysis - README
-================================================================================
+# ⚡ Grid Disruption Analysis
 
-DESCRIPTION
---------------------------------------------------------------------------------
-Grid Disruption Analysis is a Flask-based web application designed to visualize 
-and analyze U.S. grid outage data from 2014 to 2023. Developed by Team 155
-(Krishna Aryal, Crystal Vandekerkhove, Jinesh Patel) for a data analysis
-initiative, it targets researchers and utility companies with machine learning
-models to predict outage durations, detect anomalies, and uncover patterns. Key
-features include:
-- Interactive visualizations: state-wise monthly outage heatmap, hourly outage
-  heatmap, choropleth map, and network graph.
-- Forecasting with Prophet, anomaly detection with Isolation Forest, and
-  clustering with K-Means.
-- Insights into outage trends, peak times, and regional patterns to aid
-  mitigation and enhance grid resilience.
-The app uses Flask as the web framework, with Python libraries like Pandas,
-Matplotlib, Seaborn, Plotly, and Scikit-learn for data processing and
-visualization. It features a user-friendly homepage with a light blue aesthetic
-for visualization links and an About page with a similar design for machine
-learning model details, ensuring a consistent and appealing experience.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-INSTALLATION
---------------------------------------------------------------------------------
-1. **Prerequisites**:
-   - Install Python 3.8 or higher.
-   - Ensure `pip` is available for dependency installation.
+## 📊 Overview
 
-2. **Extract the CODE Folder**:
-   - Copy the `CODE` folder to your desired directory on your local machine.
+Grid Disruption Analysis is a comprehensive Flask-based web application that visualizes and analyzes U.S. power grid outage data spanning from 2014 to 2023. This project combines interactive data visualization with advanced machine learning techniques to provide actionable insights for researchers, utility companies, and policymakers.
 
-3. **Set Up a Virtual Environment (Recommended)**:
-   - Create a virtual environment: `python -m venv venv`
-   - Activate it:
-     - On Linux/Mac: `source venv/bin/activate`
-     - On Windows: `venv\Scripts\activate`
+### 🎯 Target Audience
+- Energy researchers and analysts
+- Utility companies and grid operators
+- Policy makers and government agencies
+- Data science enthusiasts
 
-4. **Install Dependencies**:
-   - Install required Python libraries using the provided `requirements.txt`:
-     `pip install -r requirements.txt`
-   - If `requirements.txt` is missing, install manually:
-     `pip install flask pandas prophet plotly seaborn matplotlib networkx scikit-learn`
+## ✨ Key Features
 
-5. **Verify Installation**:
-   - Run the following to check dependencies:
-     `python -c "import flask, pandas, prophet, plotly, seaborn, matplotlib, networkx, sklearn"`
-   - If no errors occur, the setup is complete.
+### 📈 Interactive Visualizations
+- **State-wise Monthly Heatmap**: Track outage patterns across states and time
+- **Hourly Outage Analysis**: Identify peak disruption times
+- **Choropleth Maps**: Geographic visualization of outage distribution
+- **Network Graphs**: Visualize connections between outage events
 
-EXECUTION
---------------------------------------------------------------------------------
-1. **Navigate to the Project Directory**:
-   - Change to the directory containing `app.py` (inside the `CODE` folder):
-     `cd <path-to-CODE-folder>`
+### 🤖 Machine Learning Models
+- **Forecasting**: Prophet-based time series prediction for outage trends
+- **Anomaly Detection**: Isolation Forest algorithm to identify unusual events
+- **Clustering Analysis**: K-Means clustering to group states by outage patterns
+- **Duration Prediction**: Predictive models for outage duration estimation
 
-2. **Run the Flask App**:
-   - Start the server: `python app.py`
-   - The app will run on `http://127.0.0.1:5000`. Terminal output will confirm the server is active.
-   - To stop the server, press `Ctrl+C`.
+### 💡 Key Insights
+- Seasonal and temporal outage patterns
+- Regional vulnerability analysis
+- Peak disruption time identification
+- Grid resilience enhancement recommendations
 
-3. **Access the App**:
-   - Open a web browser and go to `http://127.0.0.1:5000`.
-   - The homepage offers links to:
-     - **Monthly Trend**: View interactive monthly outage trends with forecasting.
-     - **Predict**: Input data to predict outage durations.
-     - **State-wise Outage Heatmap**: Explore outage counts by state and month.
-     - **Choropleth Map**: See outages by state on a map.
-     - **Hourly Outage Heatmap**: Analyze outage frequency by hour and day.
-     - **Network Graph**: Visualize connections between outage events.
-     - **Anomaly Detection**: Identify unusual outage events.
-     - **Clustering of States**: Group states by outage patterns.
-     - **About Project**: Learn about the project and team.
+## 🛠️ Tech Stack
 
-4. **Interact with the App**:
-   - On the Monthly Trend page, use the dropdown to select a state.
-   - Navigate other pages via links to explore static visualizations.
+- **Backend**: Flask (Python web framework)
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Plotly, Matplotlib, Seaborn
+- **Machine Learning**: Scikit-learn, Prophet
+- **Network Analysis**: NetworkX
+- **Frontend**: HTML, CSS, Bootstrap
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+```bash
+# Check Python version (3.8+ required)
+python --version
+
+# Ensure pip is installed
+pip --version
 
 ================================================================================
