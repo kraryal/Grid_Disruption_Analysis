@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Monthly Trend{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Monthly Trend</h1>
+    <p class="lead">View the trend of outage counts over time, with a forecast for the next 12 months using the Prophet model.</p>
+
+    <form method="GET" action="/dashboard">
+        <label for="state">Select State:</label>
+        <select id="state" name="state" onchange="this.form.submit()">
+            <option value="all" {% if selected_state == 'all' %}selected{% endif %}>All States</option>
+            {% for state in states %}
+                <option value="{{ state }}" {% if state == selected_state %}selected{% endif %}>{{ state }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div class="chart-container">
+        {{ graph_html | safe }}
+    </div>
+</div>
+{% endblock %}

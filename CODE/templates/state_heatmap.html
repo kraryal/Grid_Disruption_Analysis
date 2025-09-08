@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}State-wise Outage Heatmap{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>State-wise Monthly Outage Count Heatmap</h1>
+    <p class="lead mb-4">This heatmap displays the total outage counts by state and month from 2014 to 2023, with darker colors indicating higher outage counts.</p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% else %}
+        <div id="loadingSpinner" class="d-flex justify-content-center my-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <img src="{{ url_for('static', filename=image_path) }}?v={{ timestamp }}" alt="State-wise Outage Heatmap" class="img-fluid" id="heatmapImage" style="max-width: 100%; display: none;">
+    {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imgElement = document.getElementById('heatmapImage');
+            const spinner = document.getElementById('loadingSpinner');
+
+            // If there's an error, the imgElement and spinner won't exist
+            if (!imgElement || !spinner) return;
+
+            // Create a new Image object to preload the image
+            const img = new Image();
+            img.src = imgElement.src;
+
+            // Hide spinner and show image when loaded
+            img.onload = function() {
+                imgElement.style.display = 'block';
+                spinner.style.display = 'none';
+            };
+
+            // Handle errors (e.g., image fails to load)
+            img.onerror = function() {
+                imgElement.style.display = 'block';
+                spinner.style.display = 'none';
+                imgElement.alt = 'Failed to load heatmap image';
+            };
+
+            // Fallback: Hide spinner after 5 seconds if the image doesn't load
+            setTimeout(function() {
+                if (spinner.style.display !== 'none') {
+                    imgElement.style.display = 'block';
+                    spinner.style.display = 'none';
+                }
+            }, 5000);
+        });
+    </script>
+</div>
+{% endblock %}

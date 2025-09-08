@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Anomaly Detection{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Anomaly Detection</h1>
+    <p class="lead">Identify anomalies in outage events from 2014 to 2023 using Isolation Forest.</p>
+
+    <div class="chart-container">
+        {{ graph_html | safe }}
+    </div>
+</div>
+{% endblock %}

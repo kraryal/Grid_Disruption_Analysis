@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .navbar-brand {
+            color: #ecf0f1;
+            font-size: 1.5em;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .navbar-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+        .navbar-links a:hover {
+            color: #3498db;
+        }
+        .back-button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .content {
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: calc(100vh - 70px); /* Adjust for navbar height */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center text and inline elements */
+            width: 100%; /* Ensure it takes the full width up to max-width */
+        }
+        .chart-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Ensure charts take the full width of the container */
+        }
+        .team-members p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+        .error {
+            color: #e74c3c;
+            font-style: italic;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        /* Home page specific styles */
+        .home-title {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .home-subtitle {
+            font-size: 1.2em;
+            color: #34495e;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .home-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .home-links li {
+            margin: 15px 0;
+            background: #e7f1fa; /* Light blue background */
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .home-links li:hover {
+            background: #d1e3fa; /* Slightly darker light blue on hover */
+        }
+        .home-links a {
+            font-size: 1.2em;
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+        .home-links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        /* About page specific styles */
+        .list-group-item {
+            background: #e7f1fa; /* Light blue background for list items */
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 15px;
+            transition: background 0.3s ease;
+        }
+        .list-group-item:hover {
+            background: #d1e3fa; /* Slightly darker light blue on hover */
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">Grid Disruption Analysis</a>
+            <div class="navbar-links">
+                <a href="/">Home</a>
+                <a href="/dashboard">Monthly Trend</a>
+                <a href="/predict">Predict</a>
+                <a href="/state_heatmap">State Heatmap</a>
+                <a href="/map">Map</a>
+                <a href="/hourly_heatmap">Hourly Heatmap</a>
+                <a href="/network">Network</a>
+                <a href="/anomaly_detection">Anomaly Detection</a>
+                <a href="/clustering">Clustering</a>
+                <a href="/about">About</a>
+                <button class="back-button" onclick="history.back()">Back</button>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Clustering of States{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Clustering of States</h1>
+    <p class="lead">View the clustering of states by outage patterns from 2014 to 2023 using K-Means.</p>
+
+    <div class="chart-container">
+        {{ graph_html | safe }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+@"
+# Python cache and logs
+__pycache__/
+*.py[cod]
+*.pyo
+*.log
+
+# Virtual environments & env files
+venv/
+.venv/
+*.env
+.env.*
+!example.env
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Large files to keep OUT of GitHub
+CODE/data/
+CODE/*.joblib
+"@ | Out-File -Encoding utf8 .gitignore

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Outage Data Visualization{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Outage Data Visualization</h1>
+    <p class="lead">This choropleth map shows the total outage events by state from 2014 to 2023, with darker colors indicating more events.</p>
+
+    <div class="chart-container">
+        {{ graph_html | safe }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="home-title">About This Project</h1>
+    <p class="lead home-subtitle">This project analyzes grid disruption data across the U.S. from 2014 to 2023, using Flask, interactive visualizations, and advanced machine learning models to uncover patterns, predict future outages, identify anomalies, and estimate outage durations.</p>
+
+    <h3>Machine Learning Models Used</h3>
+    <ul class="list-group mb-4">
+        <li class="list-group-item">
+            <strong>Prophet (Forecasting):</strong> Used in the Monthly Trend to predict future outage counts based on historical data, incorporating seasonality and trends.
+        </li>
+        <li class="list-group-item">
+            <strong>Isolation Forest (Anomaly Detection):</strong> Applied in the Anomaly Detection section to identify unusual outage events, helping to pinpoint significant disruptions.
+        </li>
+        <li class="list-group-item">
+            <strong>K-Means Clustering:</strong> Utilized in the Clustering section to group states with similar outage patterns, revealing regional trends.
+        </li>
+        <li class="list-group-item">
+            <strong>RandomForest, XGBoost, LightGBM, and VotingClassifier (Outage Duration Prediction):</strong> Employed in the Predict Outage Duration section to estimate the duration of outages. These models are trained on a preprocessed dataset with SMOTE (Synthetic Minority Oversampling Technique) to handle class imbalance, ensuring robust predictions across different duration categories. The best model is selected based on the weighted F1-score.
+        </li>
+    </ul>
+
+    <h3>Team 155</h3>
+    <div class="team-members">
+        <p>Krishna Aryal</p>
+        <p>Crystal Vandekerkhove</p>
+        <p>Jinesh Patel</p>
+    </div>
+</div>
+{% endblock %}

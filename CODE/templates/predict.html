@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}Predict Outage Duration{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Predict Outage Duration</h1>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="/predict" onsubmit="return validateForm(event)">
+        <div class="form-group">
+            <label for="state">State:</label>
+            <select id="state" name="state" onchange="updateCounties()" required>
+                <option value="">Select a state</option>
+                {% for state in states %}
+                    <option value="{{ state }}" {% if state == selected_state %}selected{% endif %}>{{ state }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="county">County:</label>
+            <select id="county" name="county" required>
+                <option value="">Select a county</option>
+                {% if selected_county %}
+                    <option value="{{ selected_county }}" selected>{{ selected_county }}</option>
+                {% endif %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="event_type">Event Type:</label>
+            <select id="event_type" name="event_type" required>
+                <option value="">Select an event type</option>
+                {% for event in event_types %}
+                    <option value="{{ event }}" {% if event == selected_event %}selected{% endif %}>{{ event }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="customers">Number of Customers Affected:</label>
+            <input type="number" id="customers" name="customers" value="{{ customers if customers is not none else '' }}" min="0" step="1" required>
+            <span id="customers-error" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="month">Month:</label>
+            <select id="month" name="month" required>
+                <option value="">Select a month</option>
+                {% for month in months %}
+                    <option value="{{ month }}" {% if month == selected_month %}selected{% endif %}>{{ month }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="weekday">Weekday:</label>
+            <select id="weekday" name="weekday" required>
+                <option value="">Select a weekday</option>
+                {% for day in weekdays %}
+                    <option value="{{ day }}" {% if day == selected_weekday %}selected{% endif %}>{{ day }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <select id="model" name="model" required>
+                <option value="">Select a model</option>
+                {% for model in models %}
+                    <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="prediction-card">
+            <h2>Prediction Result</h2>
+            <p><strong>Predicted Outage Duration:</strong> {{ prediction }}</p>
+        </div>
+        <div class="selected-values">
+            <h3>Input Values</h3>
+            <p><strong>State:</strong> {{ selected_state }}</p>
+            <p><strong>County:</strong> {{ selected_county }}</p>
+            <p><strong>Event Type:</strong> {{ selected_event }}</p>
+            <p><strong>Number of Customers Affected:</strong> {{ customers }}</p>
+            <p><strong>Month:</strong> {{ selected_month }}</p>
+            <p><strong>Weekday:</strong> {{ selected_weekday }}</p>
+            <p><strong>Model Used:</strong> {{ best_model_name if best_model_name else "N/A" }}</p>
+        </div>
+        <div class="chart-container">
+            {{ proba_chart | safe }}
+        </div>
+        <div class="chart-container">
+            {{ importance_chart | safe }}
+        </div>
+    {% endif %}
+</div>
+<script>
+    // JavaScript to dynamically update counties based on selected state
+    async function updateCounties() {
+        const stateSelect = document.getElementById('state');
+        const countySelect = document.getElementById('county');
+        const state = stateSelect.value;
+
+        if (state) {
+            try {
+                const response = await fetch('/get_counties', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ state: state }),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch counties');
+                }
+                const counties = await response.json();
+
+                countySelect.innerHTML = '<option value="">Select a county</option>';
+                counties.forEach(county => {
+                    const option = document.createElement('option');
+                    option.value = county;
+                    option.text = county;
+                    countySelect.appendChild(option);
+                });
+
+                // If a county was previously selected, try to reselect it
+                const selectedCounty = "{{ selected_county }}";
+                if (selectedCounty) {
+                    countySelect.value = selectedCounty;
+                }
+            } catch (error) {
+                console.error('Error fetching counties:', error);
+                countySelect.innerHTML = '<option value="">Error loading counties</option>';
+            }
+        } else {
+            countySelect.innerHTML = '<option value="">Select a county</option>';
+        }
+    }
+
+    // Client-side validation for the form
+    function validateForm(event) {
+        const customersInput = document.getElementById('customers');
+        const customersValue = customersInput.value.trim();
+        const customersError = document.getElementById('customers-error');
+
+        // Reset previous error messages
+        customersError.textContent = '';
+
+        // Validate customers field
+        if (!customersValue) {
+            customersError.textContent = 'Please enter the number of customers affected.';
+            event.preventDefault();
+            return false;
+        }
+
+        const customersNum = parseInt(customersValue, 10);
+        if (isNaN(customersNum) || customersNum < 0) {
+            customersError.textContent = 'Please enter a valid positive number for customers affected.';
+            event.preventDefault();
+            return false;
+        }
+
+        return true;
+    }
+
+    // Run updateCounties on page load to populate counties if a state is pre-selected
+    window.onload = function() {
+        const stateSelect = document.getElementById('state');
+        if (stateSelect.value) {
+            updateCounties();
+        }
+    };
+</script>
+{% endblock %}

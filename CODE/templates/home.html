@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="home-title">Welcome to Grid Disruption Analysis</h1>
+    <p class="lead home-subtitle">Explore various visualizations and analyses of U.S. grid outages from 2014 to 2023.</p>
+
+    <ul class="home-links">
+        <li><a href="/dashboard">Monthly Trend</a></li>
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/state_heatmap">State-wise Outage Heatmap</a></li>
+        <li><a href="/map">Choropleth Map</a></li>
+        <li><a href="/hourly_heatmap">Hourly Outage Heatmap</a></li>
+        <li><a href="/network">Network Graph</a></li>
+        <li><a href="/anomaly_detection">Anomaly Detection</a></li>
+        <li><a href="/clustering">Clustering of States</a></li>
+        <li><a href="/about">About Project</a></li>
+    </ul>
+</div>
+{% endblock %}
